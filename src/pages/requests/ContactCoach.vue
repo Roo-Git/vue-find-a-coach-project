@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <h2>CONTACT COACH</h2>
 </template>
 
 <script>
