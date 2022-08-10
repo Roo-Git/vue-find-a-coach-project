@@ -1,10 +1,12 @@
 <template>
-  <li>
-    <div>
-      <a :href="emailLink">{{ email }}</a>
-    </div>
-    <p>{{ message }}</p>
-  </li>
+  <div>
+    <li>
+      <div>
+        <a :href="emailLink">{{ email }}</a>
+      </div>
+      <p>{{ message }}</p>
+    </li>
+  </div>
 </template>
 
 <script>
