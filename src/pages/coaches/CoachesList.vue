@@ -66,7 +66,7 @@ export default {
     },
   },
   created() {
-    this.loadCoaches;
+    this.loadCoaches();
   },
   methods: {
     setFilters(updatedFilters) {
