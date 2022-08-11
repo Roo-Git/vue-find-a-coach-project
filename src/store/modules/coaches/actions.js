@@ -1,7 +1,8 @@
 export default {
   async registerCoach(context, data) {
     const userId = context.rootGetters.userId;
-    const url = `https://vue-find-a-coach-cea8e-default-rtdb.firebaseio.com/coaches/${userId}.json`;
+    const token = context.rootGetters.token;
+    const url = `https://vue-find-a-coach-cea8e-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${token}`;
     const coachData = {
       id: context.rootGetters.userId,
       firstName: data.first,
