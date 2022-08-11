@@ -1,5 +1,11 @@
 <template>
   <div>
+    <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <base-dialog :show="isLoading" title="Autheticating" fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
     <base-card>
       <form @submit.prevent="submitForm">
         <div class="form-control">
@@ -34,6 +40,8 @@ export default {
       password: "",
       formIsValid: true,
       mode: "Login",
+      isLoading: false,
+      error: null,
     };
   },
   computed: {
@@ -53,8 +61,9 @@ export default {
     },
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.formIsValid = true;
+
       if (
         this.email === "" ||
         !this.email.includes("@") ||
@@ -63,14 +72,23 @@ export default {
         this.formIsValid = false;
         return;
       }
-      if (this.mode === "Login") {
-        //..
-      } else {
-        this.$store.dispatch("signup", {
-          email: this.email,
-          password: this.password,
-        });
+
+      this.isLoading = true;
+
+      try {
+        if (this.mode === "Login") {
+          //..
+        } else {
+          await this.$store.dispatch("signup", {
+            email: this.email,
+            password: this.password,
+          });
+        }
+      } catch (err) {
+        this.error = err.message || "Failed to auth";
       }
+
+      this.isLoading = false;
     },
     switchAuthMode() {
       if (this.mode === "Login") {
@@ -78,6 +96,9 @@ export default {
       } else {
         this.mode = "Login";
       }
+    },
+    handleError() {
+      this.error = null;
     },
   },
 };
