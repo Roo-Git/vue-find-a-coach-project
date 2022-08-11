@@ -55,8 +55,17 @@ export default {
       tokenExpiration: responseData.expiresIn,
     });
   },
+  logout(context) {
+    context.commit("setUser", {
+      token: null,
+      userId: null,
+      tokenExpiration: null,
+    });
+  },
 };
 
 // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
 // AIzaSyBkSDnHqNnHHrb0W1gBYp8fZ0wt1BDlsFA
+
+//     (state.token = null), (state.userId = null), (state.tokenExpiration = null);
