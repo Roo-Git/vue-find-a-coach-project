@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: "/requests",
       component: RequestsRecived,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
     { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } },
     { path: "/:notFound(.*)", component: NotFound },
